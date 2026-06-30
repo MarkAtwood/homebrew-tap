@@ -3,6 +3,8 @@ class Bd < Formula
   homepage "https://github.com/MarkAtwood/beads"
   license "MIT"
   head "https://github.com/MarkAtwood/beads.git", branch: "pr/flatfile-backend"
+  # b7470a56 fix(flatfile): tolerate type-coerced JSON from raw SQL exports
+  revision 1
 
   depends_on "go" => :build
 
