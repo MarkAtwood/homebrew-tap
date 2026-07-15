@@ -1,10 +1,13 @@
 class Bd < Formula
   desc "AI-supervised issue tracker for coding workflows (flatfile fork)"
   homepage "https://github.com/MarkAtwood/beads"
+  url "https://github.com/MarkAtwood/beads/archive/refs/tags/v1.1.0-flatfile.1.tar.gz"
+  sha256 "2854a0dc88006a62418f8dc98061145db72234cc3490c01f11b78b1da11b3bf0"
   license "MIT"
-  head "https://github.com/MarkAtwood/beads.git", branch: "pr/flatfile-backend"
-  # b7470a56 fix(flatfile): tolerate type-coerced JSON from raw SQL exports
-  revision 1
+  # Stable builds from tagged releases on the fork; head tracks the `flatfile`
+  # release branch, which is fast-forwarded only after the full test gauntlet
+  # passes — never the raw PR branch, which force-pushes mid-review.
+  head "https://github.com/MarkAtwood/beads.git", branch: "flatfile"
 
   depends_on "go" => :build
 
@@ -13,10 +16,14 @@ class Bd < Formula
     ldflags = %W[
       -s -w
       -X main.Version=#{version}
-      -X main.Build=#{Utils.git_short_head}
-      -X main.Commit=#{Utils.git_head}
-      -X main.Branch=pr/flatfile-backend
+      -X main.Build=brew
     ]
+    if build.head?
+      ldflags += %W[
+        -X main.Commit=#{Utils.git_head}
+        -X main.Branch=flatfile
+      ]
+    end
     system "go", "build", *std_go_args(ldflags:), "./cmd/bd"
   end
 
