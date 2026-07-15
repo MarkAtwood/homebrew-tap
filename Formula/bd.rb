@@ -1,8 +1,8 @@
 class Bd < Formula
   desc "AI-supervised issue tracker for coding workflows (flatfile fork)"
   homepage "https://github.com/MarkAtwood/beads"
-  url "https://github.com/MarkAtwood/beads/archive/refs/tags/v1.1.0-flatfile.1.tar.gz"
-  sha256 "2854a0dc88006a62418f8dc98061145db72234cc3490c01f11b78b1da11b3bf0"
+  url "https://github.com/MarkAtwood/beads/archive/refs/tags/v1.1.0-flatfile.2.tar.gz"
+  sha256 "2fc7996c1be56e03f95ec66b3104dc264569d40402547c5facd6d3fce5c0c62f"
   license "MIT"
   # Stable builds from tagged releases on the fork; head tracks the `flatfile`
   # release branch, which is fast-forwarded only after the full test gauntlet
